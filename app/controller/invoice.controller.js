@@ -49,7 +49,13 @@ const { success, error } = require('../utils/responseUtil');
 
 exports.func_getAllInvoice = async (req, res) => {
   try {
-    const { rows, count } = await Invoice.findAndCountAll();
+    const { page } = req.query;
+
+    const { rows, count } = await Invoice.findAndCountAll({
+      limit: 6,
+      offset: (page - 1) * 6,
+      order: [['createdAt', 'DESC']],
+    });
 
     //************************************************************************
     // If can't find invoice data, respond with error
