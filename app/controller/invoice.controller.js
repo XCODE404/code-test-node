@@ -90,7 +90,7 @@ exports.func_getInvoiceById = async (req, res) => {
 
 exports.func_createInvoice = async (req, res) => {
   try {
-    const { date, customer_name, sales_person_name, notes, products } = req.body;
+    const { date, customer_name, sales_person_name, notes, products } = req.body.data;
 
     const invoice = await Invoice.create({
       date,
@@ -109,7 +109,7 @@ exports.func_createInvoice = async (req, res) => {
 exports.func_updateInvoice = async (req, res) => {
   try {
     const { id } = req.params;
-    const { date, customer_name, sales_person_name, notes, products } = req.body;
+    const { date, customer_name, sales_person_name, notes, products } = req.body.data;
 
     //************************************************************************
     // before update search
