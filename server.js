@@ -20,14 +20,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // Cross origin
 app.use(cors(corsOptions));
-// Put public folder to static
-// app.use(express.static(path.join(__dirname, 'public')));
 // adding Helmet to enhance your Rest API's security
 app.use(helmet());
 // adding morgan to log HTTP requests
 app.use(morgan('combined'));
 
 // routes
+app.use('/api/invoice', require('./app/routes/invoice.routes'));
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}.`);
